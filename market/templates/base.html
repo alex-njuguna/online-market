@@ -4,8 +4,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=.0">
-
-        <script src="https://cdn.tailwindcss.com"></script>
+       
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     
         <title> {%block title %}{% endblock %} | Market</title>
         
@@ -22,9 +22,13 @@
                 <a href="#" class="text-lg font-semibold hover:text-gray-500">New Item</a>
                 <a href="#" class="text-lg font-semibold hover:text-gray-500">Browse</a>
 
-                <a href="#" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign up</a>
-                <a href="#" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log in</a>
-
+                {% if request.user.is_authenticated %}
+                    <a href="#" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Dashboard</a>
+                    <a href="#" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Inbox</a>
+                {% else %}
+                    <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign up</a>
+                    <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log in</a>
+                {% endif %}
         </nav>
         <div class="px-6 py-6">
             {% block content %}
@@ -41,7 +45,7 @@
 
                 <ul class="space-y-2">
                     <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
-                    <li><a href="{% url 'contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
+                    <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
                     <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Privacy policy</a></li>
                     <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Terms of use</a></li>
                     
