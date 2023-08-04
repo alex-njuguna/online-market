@@ -8,6 +8,8 @@ urlpatterns = [
     
     path("/new/", views.new_item, name="new_item"),
     
-    path("/<int:pk>/delete", views.delete, name="delete"),
+    path("/<int:pk>/delete/", views.delete, name="delete"),
+    
+    path("/<int:pk>/update/", views.update, name="update"),
     
 ]
